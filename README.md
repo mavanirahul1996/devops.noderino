@@ -87,3 +87,10 @@ The current `npm test` script is a placeholder that prints a success message; it
 - Add a CI workflow to install dependencies and run tests.
 - Add a container image vulnerability scan.
 - Add Kubernetes readiness and liveness probes if deploying to a cluster.
+
+
+## GitHub Actions and Azure deployment
+
+The GitHub Actions workflow builds the Node.js application on pushes to `main`. Azure deployment is a separate manual action so a missing or expired Azure service-principal credential does not make normal code validation fail.
+
+To deploy, open **Actions → Build and deploy Node.js app to Azure Web App - rahul-app → Run workflow** and select `deploy_to_azure=true`. The Azure client ID, tenant ID and subscription ID secrets must belong to the same valid Entra ID application and tenant. The current workflow run previously failed at Azure login with an application-not-found error; update those secrets in GitHub Settings before requesting deployment.
